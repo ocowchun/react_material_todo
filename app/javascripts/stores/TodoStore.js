@@ -1,8 +1,8 @@
+'use strict';
 var _ = require('underscore');
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
-var uuid = require('../utils/uuid');
 var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 var todos = [];
@@ -23,7 +23,7 @@ var TodoStore = _.extend(new EventEmitter(), {
 
   get: function(id) {
     return _.find(todos, function(todo) {
-      todo.id === id;
+      return todo.id === id;
     });
   },
 
@@ -31,7 +31,6 @@ var TodoStore = _.extend(new EventEmitter(), {
     return todos;
   },
   getTodoText: function() {
-    console.log("getTodoText",todoText)
     return todoText;
   }
 });
@@ -50,7 +49,7 @@ TodoStore.dispatchToken = AppDispatcher.register(function(payload) {
   };
 
   handles[ActionTypes.RECEIVE_CREATED_TODO] = function() {
-    var createdTodo = action.todo
+    var createdTodo = action.todo;
     todos.push(createdTodo);
     todoText = '';
     TodoStore.emitChange();

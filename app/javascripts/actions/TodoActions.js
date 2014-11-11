@@ -1,3 +1,4 @@
+'use strict';
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var ActionTypes = AppConstants.ActionTypes;
@@ -10,15 +11,11 @@ var TodoActions = {
 			text: text
 		});
 		var cb = function(todo) {
-			console.log("after create")
-			
-			TodoActions.receiveCreated(todo)
+			TodoActions.receiveCreated(todo);
 		};
 		TodoWebAPI.createTodo(text, cb);
 	},
 	receiveCreated: function(todo) {
-		console.log("receiveAll");
-		
 		AppDispatcher.handleServerAction({
 			type: ActionTypes.RECEIVE_CREATED_TODO,
 			todo: todo

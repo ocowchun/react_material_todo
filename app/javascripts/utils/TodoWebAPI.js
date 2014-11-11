@@ -1,10 +1,10 @@
+'use strict';
 var uuid = require('./uuid');
-var _ = require('underscore');
 
 var fakeServer = (function() {
-	todos = [];
+	var todos = [];
 	var server = {};
-	server.createTodo = function(text,cb) {
+	server.createTodo = function(text, cb) {
 		var id = uuid();
 		var todo = {
 			id: id,
@@ -33,7 +33,7 @@ module.exports = {
 	},
 	getTodos: function() {
 		fakeServer.getTodos(function(todos) {
-
+			return todos;
 		});
 	}
 

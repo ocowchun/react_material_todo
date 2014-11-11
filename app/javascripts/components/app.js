@@ -1,3 +1,4 @@
+'use strict';
 // var GameActions = require('./../actions/GameActions');
 
 var React = require('react');
@@ -47,6 +48,6 @@ var App = React.createClass({
 		return appTemplate.call(this);
 	}
 
-})
+});
 
 module.exports = App;
