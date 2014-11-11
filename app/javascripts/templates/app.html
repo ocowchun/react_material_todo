@@ -1,0 +1,13 @@
+<!-- var TodoList=require('.././components/todoLIst'); -->
+<div className="row">
+	<header id="header">
+	
+		<input type="text" id="new-todo" ref="newField" placeholder="What need to be done?" onKeyDown={this.handleNewTodoKeyDown} className="form-control" onChange={this.onChange} value={this.state.text} />
+	</header>
+	<div className="col-md-2"></div>
+	<div className="col-md-8">
+		<TodoList todos={this.state.todos}></TodoList>
+		
+	</div>
+	<div className="col-md-2"></div>
+</div>
