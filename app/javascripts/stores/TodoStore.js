@@ -39,6 +39,16 @@ function clearTodoText() {
   todoText = '';
 }
 
+function findTodoIdx(todo) {
+  for (var i = 0, max = todos.length; i < max; i++) {
+    var todo = todos[i];
+    if (todo.id === todo.id) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 TodoStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
   var handles = {};
@@ -60,11 +70,18 @@ TodoStore.dispatchToken = AppDispatcher.register(function(payload) {
   };
 
   handles[ActionTypes.RECEIVE_COMPLETED] = function() {
-    var todo = _.last(todos);
+    var todo = action.todo;
     if (todo) {
-      todo.done = true;
+      var idx = findTodoIdx(todo);
 
+      console.log(idx);
+      if (idx !== -1) {
+        todos[idx].done = todo.done;
+      } else {
+        todos.push(todo);
+      }
     }
+
     clearTodoText();
     TodoStore.emitChange();
   };

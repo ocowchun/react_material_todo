@@ -68,13 +68,14 @@ var TodoActions = {
 			type: ActionTypes.TODO_COMPLETE
 		});
 		var cb = function(todo) {
-			TodoActions.receiveCompleted();
+			TodoActions.receiveCompleted(todo);
 		};
 		TodoWebAPI.completeTodo(cb);
 	},
-	receiveCompleted: function() {
+	receiveCompleted: function(todo) {
 		AppDispatcher.handleServerAction({
-			type: ActionTypes.RECEIVE_COMPLETED
+			type: ActionTypes.RECEIVE_COMPLETED,
+			todo: todo
 		});
 	},
 	receiveAll: function(todos) {

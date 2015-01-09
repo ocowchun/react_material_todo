@@ -1,5 +1,7 @@
 'use strict';
 var uuid = require('./uuid');
+var _ = require('underscore');
+
 
 var fakeServer = (function() {
 	var todos = [];
@@ -13,14 +15,17 @@ var fakeServer = (function() {
 		};
 		todos.push(todo);
 		setTimeout(function() {
-			cb(todo);
+			cb(_.clone(todo));
 		}, 0);
 	};
 
 	server.completeTodo = function(cb) {
-		// mock
+		var todo = _.last(todos);
+		if (todo) {
+			todo.done = true;
+		}
 		setTimeout(function() {
-			cb();
+			cb(_.clone(todo));
 		}, 0);
 	};
 
