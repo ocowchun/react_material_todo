@@ -41,8 +41,8 @@ function clearTodoText() {
 
 function findTodoIdx(todo) {
   for (var i = 0, max = todos.length; i < max; i++) {
-    var todo = todos[i];
-    if (todo.id === todo.id) {
+    var t = todos[i];
+    if (t.id === todo.id) {
       return i;
     }
   }
@@ -73,8 +73,6 @@ TodoStore.dispatchToken = AppDispatcher.register(function(payload) {
     var todo = action.todo;
     if (todo) {
       var idx = findTodoIdx(todo);
-
-      console.log(idx);
       if (idx !== -1) {
         todos[idx].done = todo.done;
       } else {
