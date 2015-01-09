@@ -8,11 +8,19 @@ var fakeServer = (function() {
 		var id = uuid();
 		var todo = {
 			id: id,
-			text: text
+			text: text,
+			done: false
 		};
 		todos.push(todo);
 		setTimeout(function() {
 			cb(todo);
+		}, 0);
+	};
+
+	server.completeTodo = function(cb) {
+		// mock
+		setTimeout(function() {
+			cb();
 		}, 0);
 	};
 
@@ -27,14 +35,15 @@ var fakeServer = (function() {
 
 module.exports = {
 	createTodo: function(text, cb) {
-		fakeServer.createTodo(text, function(todo) {
-			cb(todo);
-		});
+		fakeServer.createTodo(text, cb);
 	},
 	getTodos: function() {
 		fakeServer.getTodos(function(todos) {
 			return todos;
 		});
+	},
+	completeTodo: function(cb) {
+		fakeServer.completeTodo(cb)
 	}
 
 };

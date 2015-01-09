@@ -8,8 +8,11 @@ var TodoList = React.createClass({
 	render: function() {
 		var todos = this.props.todos;
 		var todoItems = _.map(todos, function(message) {
+			
+			var status=message.done?"done":"doing";
 			return TodoItem({
 				content: message.text,
+				status:status,
 				key: message.id
 			});
 		});

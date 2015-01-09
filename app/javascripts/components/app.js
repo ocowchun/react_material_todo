@@ -36,7 +36,7 @@ var App = React.createClass({
 		}
 		event.preventDefault();
 		var text = this.state.text;
-		TodoActions.create(text);
+		TodoActions.submit(text);
 		// return false;
 
 

@@ -35,6 +35,10 @@ var TodoStore = _.extend(new EventEmitter(), {
   }
 });
 
+function clearTodoText() {
+  todoText = '';
+}
+
 TodoStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
   var handles = {};
@@ -51,7 +55,17 @@ TodoStore.dispatchToken = AppDispatcher.register(function(payload) {
   handles[ActionTypes.RECEIVE_CREATED_TODO] = function() {
     var createdTodo = action.todo;
     todos.push(createdTodo);
-    todoText = '';
+    clearTodoText();
+    TodoStore.emitChange();
+  };
+
+  handles[ActionTypes.RECEIVE_COMPLETED] = function() {
+    var todo = _.last(todos);
+    if (todo) {
+      todo.done = true;
+
+    }
+    clearTodoText();
     TodoStore.emitChange();
   };
 
