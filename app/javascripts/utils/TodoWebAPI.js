@@ -11,7 +11,8 @@ var fakeServer = (function() {
 		var todo = {
 			id: id,
 			text: text,
-			done: false
+			done: false,
+			created_at:new Date()
 		};
 		todos.push(todo);
 		setTimeout(function() {
@@ -23,6 +24,7 @@ var fakeServer = (function() {
 		var todo = _.last(todos);
 		if (todo) {
 			todo.done = true;
+			todo.done_at=new Date();
 		}
 		setTimeout(function() {
 			cb(_.clone(todo));
